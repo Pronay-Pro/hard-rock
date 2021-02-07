@@ -14,7 +14,7 @@ const searchSong = () => {
         .catch(Error=> catchError("Something wrong",Error))
 }
 const displaySong = song => {
-    // console.log(song)
+    console.log(song)
     const songContainer = document.getElementById("song-container");
     songContainer.innerHTML =''
     song.forEach(song => {
@@ -28,6 +28,7 @@ const displaySong = song => {
        <audio controls>
        <source src="${song.preview}" type="audio/mpeg">
        </audio>
+       <br>
        </div>
        <div class="col-md-3 text-md-right text-center">
        <button onclick="getLyrics('${song.artist.name}','${song.title}')" class="btn btn-success">Get Lyrics</button>
@@ -35,6 +36,8 @@ const displaySong = song => {
         songContainer.appendChild(songDive);
     });
     document.getElementById("search-field").value =""
+    document.getElementById("song-lyrics").innerText= "";
+    document.getElementById("errorMessage").innerText =""
 }
 // const getLyrics = async (artist,title)=>{
 //     const url =` https://api.lyrics.ovh/v1/${artist}/${title}`
@@ -57,7 +60,6 @@ const displayLyrics = lyrics=>{
     if(lyrics =="" || lyrics == null || lyrics==[]){
         alert("Sorry!! Lyrics Can't Find")
     }
-   
 }
  
 const catchError = error =>{
